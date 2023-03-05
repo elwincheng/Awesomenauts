@@ -2,6 +2,11 @@ import React, { useState, useEffect, useRef } from "react";
 import classNames from "classnames";
 import "./Speech.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Dropdown from "../components/Dropdown";
+
+// const options = [
+// 	'Chinese',
+// ]
 
 function Speech() {
   const [isRecording, setIsRecording] = useState(false);
@@ -11,12 +16,9 @@ function Speech() {
 	let mediaRecorder = useRef(null);
 
   useEffect(() => {
-		console.log("hi")
     if (!audioURL) return;
-		console.log("DEFined")
 
     setAudio(new Audio(audioURL));
-		console.log(audio)
     // audio.play();
 
   }, [audioURL]);
@@ -82,11 +84,17 @@ function Speech() {
       </button>
 			{/* {audio} */}
 				<hr />
-				{audioURL && <audio src={audioURL} controls />}
-				<hr />
-				<button className="submit-btn">
-					Submit
-				</button>
+				{audioURL && 
+					<>
+						<audio src={audioURL} controls />
+						<hr />
+						<Dropdown />
+						<hr/>
+						<button className="submit-btn">
+							Submit
+						</button>
+					</>
+				}
     </div>
   );
 }
