@@ -14,7 +14,7 @@ function App() {
           <Route path="speech" element={<Speech />} />
           {/* <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} /> */}
-          <Route path="*" element={<Speech />} />
+          {/* <Route path="*" element={<Speech />} /> */}
 				</Routes>
       </div>
     // <div className="App">
