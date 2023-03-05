@@ -4,24 +4,34 @@ import "./Speech.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Dropdown from "../components/Dropdown";
 
-// const options = [
-// 	'Chinese',
-// ]
+const apiURL = "http://localhost:5000"
+
+const languages = [
+  { value: 'en', label: 'English' },
+  { value: 'es', label: 'Spanish' },
+  { value: 'fr', label: 'French' },
+  { value: 'de', label: 'German' },
+  { value: 'ja', label: 'Japanese' },
+  { value: 'ko', label: 'Korean' },
+  { value: 'ko', label: 'African-American English' },
+];
 
 function Speech() {
   const [isRecording, setIsRecording] = useState(false);
   const [audioURL, setAudioURL] = useState(null);
   const [audioBlob, setAudioBlob] = useState(null);
-  const [audio, setAudio] = useState([]);
+  // const [audio, setAudio] = useState([]);
+
+	const [selectedLanguage, setSelectedLanguage] = useState(null);
 	let mediaRecorder = useRef(null);
 
-  useEffect(() => {
-    if (!audioURL) return;
+  // useEffect(() => {
+  //   if (!audioURL) return;
 
-    setAudio(new Audio(audioURL));
-    // audio.play();
+  //   setAudio(new Audio(audioURL));
+  //   // audio.play();
 
-  }, [audioURL]);
+  // }, [audioURL]);
 
   const startRecording = async () => {
     try {
@@ -35,8 +45,9 @@ function Speech() {
       });
 
       mediaRecorder.current.addEventListener("stop", () =>{
-        const audioBlob = new Blob(audioChunks);
+        const audioBlob = new Blob(audioChunks, {type: 'audio/wav'});
         const audioURL = URL.createObjectURL(audioBlob);
+
 
         setAudioURL(audioURL);
         setAudioBlob(audioBlob);
@@ -67,6 +78,18 @@ function Speech() {
     }
   };
 
+	const handleSubmit = async () =>{
+		const formData = new FormData();
+		formData.append('awesomeaudio', audioBlob, 'audio.wav');
+		formData.append('language', selectedLanguage);
+		formData.append('text', "hello");
+
+		const response = await fetch(apiURL + '/post-audio', {
+			method: 'POST',
+			body: formData
+		})
+	}
+
   const buttonClasses = classNames("record-button", {
     "recording": isRecording,
   });
@@ -88,9 +111,9 @@ function Speech() {
 					<>
 						<audio src={audioURL} controls />
 						<hr />
-						<Dropdown />
+						<Dropdown placeholder="Native Language / Dialect" selected={selectedLanguage} setSelected={setSelectedLanguage} list={languages}/>
 						<hr/>
-						<button className="submit-btn">
+						<button className="submit-btn" onClick={handleSubmit}>
 							Submit
 						</button>
 					</>

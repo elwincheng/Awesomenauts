@@ -33,29 +33,21 @@ import React, { useState } from 'react';
 import Select from 'react-select';
 import './Dropdown.css'
 
-const languages = [
-  { value: 'en', label: 'English' },
-  { value: 'es', label: 'Spanish' },
-  { value: 'fr', label: 'French' },
-  { value: 'de', label: 'German' },
-  { value: 'ja', label: 'Japanese' },
-  { value: 'ko', label: 'Korean' },
-];
 
-const Dropdown = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
+const Dropdown = ({selected, setSelected, list, placeholder}) => {
+  // const [selected, setSelectedLanguage] = useState(null);
 
   const handleSelectLanguage = (selectedOption) => {
-    setSelectedLanguage(selectedOption);
+    setSelected(selectedOption);
   };
 
   return (
     <Select
 			styles={{width: 200}}
-      placeholder="Select a language"
-      value={selectedLanguage}
+      placeholder={placeholder}
+      value={selected}
       onChange={handleSelectLanguage}
-      options={languages}
+      options={list}
       isSearchable
     />
   );
