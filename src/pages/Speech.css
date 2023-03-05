@@ -51,3 +51,18 @@
     transform: scale(1);
   }
 }
+
+.submit-btn {
+  background-color: #2ecc71; /* Green background color */
+  color: #fff; /* White text color */
+  font-size: 16px; /* Font size */
+  padding: 10px 20px; /* Padding */
+  border-radius: 5px; /* Rounded corners */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s ease; /* Transition effect */
+}
+
+.submit-btn:hover {
+  background-color: #27ae60; /* Darker green background color on hover */
+}

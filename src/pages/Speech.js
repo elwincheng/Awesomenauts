@@ -72,6 +72,7 @@ function Speech() {
   return (
     <div className="speech-container">
 			<h1>Peter Talks to his computer. He prefers it to</h1>
+				<hr />
       <button className={buttonClasses} onClick={handleButtonClick}>
         {isRecording ? (
 					<i class="fa-solid fa-square fa-3x"></i>
@@ -80,7 +81,12 @@ function Speech() {
         )}
       </button>
 			{/* {audio} */}
+				<hr />
 				{audioURL && <audio src={audioURL} controls />}
+				<hr />
+				<button className="submit-btn">
+					Submit
+				</button>
     </div>
   );
 }
