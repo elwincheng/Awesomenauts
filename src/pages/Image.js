@@ -10,6 +10,8 @@ function Image() {
     const [photoHeight, setPhotoHeight] = useState(0);
     const [videoHeight, setVideoHeight] = useState(0);
     const [readyToSubmit, setReadyToSubmit] = useState(false);
+    const [gender, setGender] = useState("Male");
+    const [race, setRace] = useState("Mixed Race");
     const videoRef = useRef(null);
     const photoRef = useRef(null);
 
@@ -56,9 +58,31 @@ function Image() {
         
     }
 
-    const submitPhoto = () => {
+    const submitPhoto = async () => {
         var dataUrl = photoRef.current.toDataURL();
-        console.log(dataUrl);
+        const formData = new FormData();
+        formData.append("photo", dataUrl);
+        formData.append("gender", gender);
+        formData.append("race", race);
+        try {
+            const response = await fetch("http://localhost:5000/post-image", 
+            {
+                method: "POST",
+                body: formData
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const handleGenderChange = (event) => {
+        console.log(event.target.value);
+        setGender(event.target.value);
+    }
+
+    const handleRaceChange = (event) => {
+        console.log(event.target.value);
+        setRace(event.target.value);
     }
 
     return (
@@ -76,14 +100,14 @@ function Image() {
             {
                 readyToSubmit == true ? 
                 <>
-                <label for="gender" >Gender: </label>
-                <select name="gender" className="gender">
+                <label for="gender" id="gender">Gender: </label>
+                <select name="gender" value={gender} onChange={(event) => handleGenderChange(event)} className="gender">
                     <option>Male</option>
                     <option>Female</option>
                     <option>Other</option>
                 </select>
-                <label for="race" >Race: </label>
-                <select name="race" className="race">
+                <label for="race" id="race">Race: </label>
+                <select name="race" className="race" value={race} onChange={(event)=>handleRaceChange(event)}>
                     <option>Mixed Race</option>
                     <option>Arctic (Siberian, Eskimo)</option>
                     <option>Caucasian (European)</option>

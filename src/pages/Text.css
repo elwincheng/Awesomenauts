@@ -24,3 +24,23 @@
   resize: none;
   outline: none;
 }
+
+.submit-btn {
+  background-color: #2ecc71; /* Green background color */
+  color: #fff; /* White text color */
+  font-size: 16px; /* Font size */
+  padding: 10px 20px; /* Padding */
+  border-radius: 5px; /* Rounded corners */
+  margin-top: 20px;
+  margin-left: 30px;
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s ease; /* Transition effect */
+}
+
+label {
+  margin-top: 20px;
+}
+select {
+  width: 165px;
+  margin-bottom: 20px
+}
