@@ -7,13 +7,15 @@ import Dropdown from "../components/Dropdown";
 const apiURL = "http://localhost:5000"
 
 const languages = [
-  { value: 'en', label: 'English' },
-  { value: 'es', label: 'Spanish' },
-  { value: 'fr', label: 'French' },
+  { value: 'en', label: 'American English' },
+  { value: 'ko', label: 'African-American English' },
+  { value: 'es', label: 'Australia English' },
+  { value: 'ko', label: 'British English' },
+  { value: 'fr', label: 'Chinese' },
   { value: 'de', label: 'German' },
   { value: 'ja', label: 'Japanese' },
   { value: 'ko', label: 'Korean' },
-  { value: 'ko', label: 'African-American English' },
+  { value: 'ko', label: 'Korean' },
 ];
 
 function Speech() {
@@ -96,7 +98,7 @@ function Speech() {
 
   return (
     <div className="speech-container">
-			<h1>Peter Talks to his computer. He prefers it to</h1>
+			<h1> The quick brown fox jumps over the lazy dog </h1>
 				<hr />
       <button className={buttonClasses} onClick={handleButtonClick}>
         {isRecording ? (

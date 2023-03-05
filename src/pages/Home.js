@@ -10,6 +10,8 @@ function Home() {
         <Link to="/text" className="button button4">Text</Link>
         <Link to="/image" className="button button2">Image</Link>
       </div>
+        <Link to="/download" className="lowkey-btn bottom-left">Downoad</Link>
+        <Link to="/classify" className="lowkey-btn bottom-right">Classify</Link>
     </div>
   );
 }
